@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet, View, Text, TextInput } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import { db, collection, addDoc } from '../firebase';
 
@@ -7,8 +8,15 @@ import uuid from 'react-native-uuid';
 
 export default function Add() {
   const [title, setTitle] = React.useState('');
-  const [description, setDescription] = React.useState('');
   const [showLoader, setShowLoader] = React.useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Casa', value: 'casa'},
+    {label: 'Trabalho', value: 'trabalho'},
+    {label: 'Escola', value: 'escola'}
+  ]);
 
   const saveItem = async () => {
     setShowLoader(true);
@@ -17,11 +25,12 @@ export default function Add() {
         const task = {
           id: uuid.v4(),
           title: title,
-          description: description,
+          category: value,
+          status: false,
         };
         const docRef = await addDoc(collection(db, "tasks"), task);
         setTitle('');
-        setDescription('');
+        setValue(null);
         console.log("Document written with ID: ", docRef.id);
       } catch(e) {
         console.error("Error adding document: ", e);
@@ -34,8 +43,18 @@ export default function Add() {
     <View style={styles.container}>
         <Text style={styles.label}>Titulo</Text>
         <TextInput style={styles.input} onChangeText={setTitle} value={title} />
-        <Text style={styles.label}>Descrição</Text>
-        <TextInput style={styles.input} onChangeText={setDescription} value={description} multiline={true} />
+        <Text style={styles.label}>Categoria</Text>
+        <View style={styles.dropdown}>
+          <DropDownPicker
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
+        </View>
+        
         <TouchableOpacity
           style={styles.button}
           onPress={saveItem}>
@@ -59,6 +78,9 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
     borderRadius: 10,
+  },
+  dropdown:{
+    margin: 20,
   },
   button: {
     backgroundColor: '#1E90FF',
