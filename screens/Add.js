@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet, View, Text, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-import { db, collection, addDoc } from '../firebase';
+import { db, collection, addDoc, doc, updateDoc } from '../firebase';
 
 import uuid from 'react-native-uuid';
 
-export default function Add() {
+export default function Add({navigation}) {
   const [title, setTitle] = React.useState('');
   const [showLoader, setShowLoader] = React.useState(false);
 
@@ -23,12 +23,12 @@ export default function Add() {
     if(title) {
       try {
         const task = {
-          id: uuid.v4(),
           title: title,
           category: value,
           status: false,
         };
         const docRef = await addDoc(collection(db, "tasks"), task);
+        updateDoc(doc(db, 'tasks',`${docRef.id}`),{id:docRef.id});
         setTitle('');
         setValue(null);
         console.log("Document written with ID: ", docRef.id);
@@ -37,6 +37,7 @@ export default function Add() {
       }
     }
     setShowLoader(false);
+    navigation.navigate('Home')
   }
 
   return (

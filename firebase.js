@@ -1,17 +1,17 @@
 import { initializeApp } from './node_modules/firebase/app';
-import { getFirestore, collection, getDocs, addDoc  } from './node_modules/firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc} from './node_modules/firebase/firestore/lite';
 
 const config = {
-    apiKey: "AIzaSyC4Bck0iKPVRHHJUG073LhpOhg_vSaE-JU",
-    authDomain: "ect2525-2022.firebaseapp.com",
-    projectId: "ect2525-2022",
-    storageBucket: "ect2525-2022.appspot.com",
-    messagingSenderId: "886112431532",
-    appId: "1:886112431532:web:fb4ce054de33a59dfede09",
-    measurementId: "G-948HV3D38T"
+    apiKey: "AIzaSyAUddfNnWpmwAeFVjxfHpX0C0r8Fvgk-f8",
+    authDomain: "lista-mob.firebaseapp.com",
+    projectId: "lista-mob",
+    storageBucket: "lista-mob.appspot.com",
+    messagingSenderId: "653538213953",
+    appId: "1:653538213953:web:48394e39f72fddde9106c0",
+    measurementId: "G-SV23TLYQ8N"
 };
 
 const app = initializeApp(config);
 const db = getFirestore(app);
 
-export { db, collection, getDocs, addDoc }
+export { db, collection, getDocs, addDoc, deleteDoc, doc, updateDoc}
