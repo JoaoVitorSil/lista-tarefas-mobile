@@ -12,6 +12,8 @@ const config = {
 };
 
 const app = initializeApp(config);
+
 const db = getFirestore(app);
 
-export { db, collection, getDocs, addDoc, deleteDoc, doc, updateDoc}
+export { db, collection, getDocs, addDoc, deleteDoc, doc, 
+        updateDoc}

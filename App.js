@@ -2,8 +2,8 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './screens/Home';
-import Add from './screens/Add';
+
+import HomeTabNavigator from './navigators/HomeTabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -11,8 +11,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-          <Stack.Screen name="Add" component={Add} options={{title: 'Criar tarefa'}}/>
+          <Stack.Screen name="HomeTabNavigator" component={HomeTabNavigator} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
     

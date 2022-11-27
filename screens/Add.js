@@ -4,7 +4,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 import { db, collection, addDoc, doc, updateDoc } from '../firebase';
 
-import uuid from 'react-native-uuid';
 
 export default function Add({navigation}) {
   const [title, setTitle] = React.useState('');
@@ -53,6 +52,7 @@ export default function Add({navigation}) {
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
+            placeholder="Selecione uma categoria"
           />
         </View>
         
