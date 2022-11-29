@@ -11,7 +11,7 @@ export default function HomeStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-      <Stack.Screen name="Add" component={Add} options={{ title: 'Chat List'}}/>
+      <Stack.Screen name="Add" component={Add} options={{ title: 'Adicionar Tarefa'}}/>
     </Stack.Navigator>
   );
 }

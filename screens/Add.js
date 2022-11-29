@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet, View, Text, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import { db, collection, addDoc, doc, updateDoc } from '../firebase';
 
@@ -53,6 +54,9 @@ export default function Add({navigation}) {
             setValue={setValue}
             setItems={setItems}
             placeholder="Selecione uma categoria"
+            dropDownContainerStyle={{
+              backgroundColor: "#dfdfdf",
+            }}
           />
         </View>
         
